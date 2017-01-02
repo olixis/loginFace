@@ -2,12 +2,14 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { FacebookService } from '../providers/facebook'
+import { UserPage } from "../pages/user/user";
+import { FacebookService } from '../providers/facebook';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    UserPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -15,7 +17,8 @@ import { FacebookService } from '../providers/facebook'
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    UserPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},
   FacebookService

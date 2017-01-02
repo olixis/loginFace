@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FacebookService } from '../../providers/facebook'
-import { NavController } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
+import { UserPage } from "../user/user"
+
 
 @Component({
   selector: 'page-home',
@@ -16,11 +17,13 @@ export class HomePage {
     this.facebook.login().then(result => {this.alertCtrl.create({
             title: 'Login com sucesso!',
             subTitle: result.status,
-            buttons: ['Ok']
+            buttons: [{text:'Ok',handler: data => {console.log('teste')}}]
     }).present()}).catch(error => {this.alertCtrl.create({
             title: 'Login error',
             subTitle: error,
-            buttons: ['Ok']
+            buttons: [{text:'Ok',handler: data => {
+              this.navCtrl.setRoot(UserPage);
+            }}]
     }).present()});
   }
 

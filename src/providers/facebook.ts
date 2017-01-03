@@ -25,5 +25,13 @@ export class FacebookService {
     return Facebook.getLoginStatus()
   }
 
+  public getUserInfo(): Promise<any> {
+    return Facebook.api(`/me?fields=${['email','name'].join(',')}`, ['email','public_profile']);
+  }
+
+  public logout(): Promise<any> {
+    return Facebook.logout();
+  }
+
 
 }

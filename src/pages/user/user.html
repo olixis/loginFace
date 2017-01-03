@@ -1,18 +1,26 @@
-<!--
-  Generated template for the User page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>user</ion-title>
+    <ion-title>informações do usuário</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+<ion-card>
 
+  <ion-card-header>
+    Usuário logado no Facebook
+  </ion-card-header>
+
+  <ion-card-content>
+    {{getUserNome}}
+  </ion-card-content>
+    <ion-card-content>
+    {{getUserEmail}}
+  </ion-card-content>
+
+</ion-card>
+<button ion-button round full (click)="logout()">Logout</button>
 </ion-content>

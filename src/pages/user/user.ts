@@ -1,22 +1,33 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { FacebookService } from '../../providers/facebook'
+import { HomePage } from "../home/home"
 
-/*
-  Generated class for the User page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-user',
   templateUrl: 'user.html'
 })
 export class UserPage {
+    private nome = '';
+    private email = '';
+  constructor(public navCtrl: NavController, public navParams: NavParams, public facebook:FacebookService) {
+    facebook.getUserInfo()
+    .then(data => {this.nome=data.name;this.email=data.email})
+    .catch(err => alert(err));
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  get getUserNome(){
+    return this.nome;
+  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad UserPage');
+  get getUserEmail(){
+    return this.email;
+  }
+
+  public logout(){
+    this.facebook.logout()
+    .then(result => {this.navCtrl.setRoot(HomePage)})
+    .catch(err => alert(err));
   }
 
 }
